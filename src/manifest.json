@@ -2,7 +2,7 @@
 	"applications": {
 		"gecko": {
 			"id": "reload-in-urlbar@exe-boss",
-			"strict_min_version": "42.0"
+			"strict_min_version": "45.0"
 		}
 	},
 
@@ -23,5 +23,14 @@
 		"96":	"icons/pastel-svg/arrow-rotate-clockwise-225@96px.png",
 		"128":	"icons/pastel-svg/arrow-rotate-clockwise-225@128px.png",
 		"256":	"icons/pastel-svg/arrow-rotate-clockwise-225.png"
+	},
+
+	"background": {
+		"scripts":	["background.js"]
+	},
+	"page_action": {
+		"browser_style":	true,
+		"default_icon":	"icons/context-fill/reload.svg",
+		"default_title":	"__MSG_pageAction_Reload__"
 	}
 }
