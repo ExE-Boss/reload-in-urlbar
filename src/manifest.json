@@ -31,6 +31,7 @@
 	"page_action": {
 		"browser_style":	true,
 		"default_icon":	"icons/context-fill/reload.svg",
-		"default_title":	"__MSG_pageAction_Reload__"
+		"default_title":	"__MSG_pageAction_Reload__",
+		"show_matches":	[ "<all_urls>" ]
 	}
 }
