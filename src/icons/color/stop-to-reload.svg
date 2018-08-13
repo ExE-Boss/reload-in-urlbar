@@ -1,8 +1,12 @@
 <!-- This Source Code Form is subject to the terms of the Mozilla Public
    - License, v. 2.0. If a copy of the MPL was not distributed with this
    - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
-<svg xmlns="http://www.w3.org/2000/svg" width="468" height="20" fill="#a4000f" fill-opacity=".6">
-  <path d="M10.414 10l5.293-5.293a1 1 0 0 0-1.414-1.414L9 8.586 3.707 3.293a1 1 0 0 0-1.414 1.414L7.586 10l-5.293 5.293a1 1 0 1 0 1.414 1.414L9 11.414l5.293 5.293a1 1 0 0 0 1.414-1.414z"/>
+<?xml-stylesheet type="text/css" href="../style/transition.css"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#a4000f" fill-opacity=".6">
+  <script type="application/javascript" href="../style/transition.js"/>
+  <svg x="0">
+    <path d="M10.414 10l5.293-5.293a1 1 0 0 0-1.414-1.414L9 8.586 3.707 3.293a1 1 0 0 0-1.414 1.414L7.586 10l-5.293 5.293a1 1 0 1 0 1.414 1.414L9 11.414l5.293 5.293a1 1 0 0 0 1.414-1.414z"/>
+  </svg>
   <svg x="18">
     <path d="M10.414 10l5.293-5.293a1 1 0 0 0-1.414-1.414L9 8.586 3.707 3.293a1 1 0 0 0-1.414 1.414L7.586 10l-5.293 5.293a1 1 0 1 0 1.414 1.414L9 11.414l5.293 5.293a1 1 0 0 0 1.414-1.414z"/>
   </svg>

@@ -29,6 +29,8 @@ const jsonEdit	= require("gulp-json-editor");
 const pkgJson	= require("./package.json");
 const replace	= require("gulp-replace");
 
+const hyperHTML	= require("viperhtml");
+
 const args = require("yargs")
 	.option("firefox", {
 		alias: "f",
@@ -169,22 +171,42 @@ gulp.task("clean", () => {
 	};
 
 	const build = () => {
+		const animationStopReload_style = String(fse.readFileSync(`${SOURCE_DIR}icons/style/transition.css`));
+		const animationStopReload_script = String(fse.readFileSync(`${SOURCE_DIR}icons/style/transition.js`));
+		const animationStopReload = hyperHTML.wire(null, "svg")`
+<style type="text/css">
+${animationStopReload_style}
+</style>
+<script type="application/javacript">
+${animationStopReload_script}
+</script>`;
+
 		return mergeStream(
 			gulp.src([
 				`${SOURCE_DIR}**`,
 				`!${SOURCE_DIR}**/*.js`,
+				`!${SOURCE_DIR}icons/**`,
 				`!${SOURCE_DIR}manifest.json`,
 				`!${SOURCE_DIR}vendor/README.md`,
 			], {dot: true})
 				.pipe(gulp.dest(BUILD_DIR)),
 			gulp.src([
 				`${SOURCE_DIR}**/*.js`,
+				`!${SOURCE_DIR}icons/style/*`,
 			], {dot: true})
 				.pipe(replace(
 					transformPackageRegexp,
 					transformPackageCallback,
 				))
 				.pipe(gulp.dest(BUILD_DIR)),
+			gulp.src([
+				`${SOURCE_DIR}icons/**`,
+				`!${SOURCE_DIR}icons/style`,
+				`!${SOURCE_DIR}icons/style/*`,
+			], {dot: true})
+				.pipe(replace(/<\?xml-stylesheet[^>]*\?>\n?/g, ""))
+				.pipe(replace(/<script(?: type="[^"]+")? href="\.\.\/style\/transition.js"\/>/, animationStopReload))
+				.pipe(gulp.dest(`${BUILD_DIR}icons/`)),
 			gulp.src(`${SOURCE_DIR}manifest.json`)
 				.pipe(jsonEdit({
 					version: pkgJson.version,

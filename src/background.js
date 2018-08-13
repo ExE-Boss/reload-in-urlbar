@@ -33,12 +33,24 @@ browser.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
 	if ("status" in changeInfo) {
 		switch (changeInfo.status) {
 			case "loading": {
-				browser.pageAction.setTitle({tabId: tabId, title: browser.i18n.getMessage("pageAction_stop")});
-				browser.pageAction.setIcon({tabId: tabId, path: "icons/context-fill/stop.svg"});
+				browser.pageAction.setTitle({
+					tabId,
+					title: browser.i18n.getMessage("pageAction_stop"),
+				});
+				browser.pageAction.setIcon({
+					tabId,
+					path: `icons/context-fill/reload-to-stop.svg?tabId=${encodeURIComponent(tabId)}&token=${Math.random() * 65536}`,
+				});
 				return;
 			} case "complete": {
-				browser.pageAction.setTitle({tabId: tabId, title: browser.i18n.getMessage("pageAction_reload")});
-				browser.pageAction.setIcon({tabId: tabId, path: "icons/context-fill/reload.svg"});
+				browser.pageAction.setTitle({
+					tabId,
+					title: browser.i18n.getMessage("pageAction_reload"),
+				});
+				browser.pageAction.setIcon({
+					tabId,
+					path: `icons/context-fill/stop-to-reload.svg?tabId=${encodeURIComponent(tabId)}&token=${Math.random() * 65536}`,
+				});
 				return;
 			} default: return;
 		}
@@ -52,10 +64,14 @@ browser.tabs.onCreated.addListener((tab) => {
 });
 
 (async () => {
-	let tabs = await browser.tabs.query({});
-	tabs.forEach(tab => {
-		if ("id" in tab) {
-			browser.pageAction.show(tab.id);
-		}
-	});
+	// Skip unnecessary initialisation on newer Firefox versions
+	const {version: browserVersion} = await browser.runtime.getBrowserInfo();
+	if ("59".localeCompare(browserVersion, [], {numeric: true}) > 0) {
+		const tabs = await browser.tabs.query({});
+		tabs.forEach(tab => {
+			if ("id" in tab) {
+				browser.pageAction.show(tab.id);
+			}
+		});
+	}
 })();

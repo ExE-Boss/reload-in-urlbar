@@ -25,6 +25,9 @@
 ## Travis CI
 !/.travis.yml
 
+## Misc configuration
+!/.editorconfig
+
 # Unwanted crap
 .DS_Store
 .DS_Store?
