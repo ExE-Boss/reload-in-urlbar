@@ -17,6 +17,20 @@
 /// <reference path="./types.d.ts"/>
 "use strict";
 
+/**
+ * @param {browser.tabs.Tab} tab
+ * @param {string} from
+ * @param {string} to
+ * @return {string}
+ */
+const getIcon = (tab, from, to) => {
+	if (tab.active && tab.id !== browser.tabs.TAB_ID_NONE) {
+		return `icons/context-fill/${from}-to-${to}.svg?tabId=${encodeURIComponent(tab.id)}&token=${Math.random() * new Date() | 0}`;
+	} else {
+		return `icons/context-fill/${to}.svg`;
+	}
+};
+
 browser.pageAction.onClicked.addListener((tab) => {
 	switch (tab.status) {
 		case "loading": {
@@ -39,7 +53,7 @@ browser.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
 				});
 				browser.pageAction.setIcon({
 					tabId,
-					path: `icons/context-fill/reload-to-stop.svg?tabId=${encodeURIComponent(tabId)}&token=${Math.random() * 65536}`,
+					path: getIcon(tab, "reload", "stop"),
 				});
 				return;
 			} case "complete": {
@@ -49,7 +63,7 @@ browser.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
 				});
 				browser.pageAction.setIcon({
 					tabId,
-					path: `icons/context-fill/stop-to-reload.svg?tabId=${encodeURIComponent(tabId)}&token=${Math.random() * 65536}`,
+					path: getIcon(tab, "stop", "reload"),
 				});
 				return;
 			} default: return;

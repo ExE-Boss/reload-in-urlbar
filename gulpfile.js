@@ -20,7 +20,6 @@ const fse	= require("fs-extra");
 const path	= require("path");
 
 const gulp	= require("gulp");
-const stream	= require("stream");
 const mergeStream	= require("merge-stream");
 const {default: webExt}	= require("web-ext");
 
@@ -150,6 +149,7 @@ gulp.task("clean", () => {
 	 * @param	{string[]}	vendors	The vendors
 	 * @return	{IMergedStream}	The stream
 	 */
+	// eslint-disable-next-line
 	const copyVendors = (...vendors) => {
 		return mergeStream([
 			...(vendors.map(vendor => {
