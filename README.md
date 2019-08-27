@@ -1,3 +1,5 @@
+<table><td>⚠️ <strong>Notice:</strong> This extension has been moved to my <a href="https://github.com/ExE-Boss/WebExtensions">WebExtensions monorepo</a>.</td></table>
+
 [![Build](https://travis-ci.com/ExE-Boss/reload-in-urlbar.svg?branch=master)](https://travis-ci.com/ExE-Boss/reload-in-urlbar)
 [![Mozilla Add-on](https://img.shields.io/amo/v/reload-in-urlbar.svg)](https://addons.mozilla.org/firefox/addon/reload-in-urlbar/)
 [![devDependencies](https://img.shields.io/david/dev/ExE-Boss/reload-in-urlbar.svg)](https://david-dm.org/ExE-Boss/reload-in-urlbar?type=dev)
